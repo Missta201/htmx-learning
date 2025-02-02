@@ -1,9 +1,11 @@
 import express from 'express';
 import createHomepageTemplate from './views/index.js';
 import createListTemplate from './views/list.js';
+import createBookTemplate from './views/book.js';
 import BOOKS_DATA from './data/data.js';
 
 // create app
+// Middleware to parse form data
 const app = express();
 app.use(express.urlencoded({extended: false}));
 
@@ -25,9 +27,17 @@ app.post('/books', (req, res) => {
 
   BOOKS_DATA.push({id, title, author});
 
-  res.send(`<li>${title}, ${author}</li>`);
+  res.redirect(`/books/${id}`);
 });
 
+
+app.get('/books/:id', (req, res) => {
+  const{id} = req.params;
+  const book = BOOKS_DATA.find((book) => book.id === id);
+
+  res.send(createBookTemplate(book));
+
+});
 
 // listen to port
 app.listen(3000, () => {
