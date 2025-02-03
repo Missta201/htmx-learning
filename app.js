@@ -39,6 +39,15 @@ app.get('/books/:id', (req, res) => {
 
 });
 
+
+app.delete('/books/:id', (req, res) => {
+  const id = req.params.id;
+  const index = BOOKS_DATA.findIndex((book) => book.id === id);
+  BOOKS_DATA.splice(index, 1);
+
+  res.send();
+});
+
 // listen to port
 app.listen(3000, () => {
   console.log('App listening on port 3000');
