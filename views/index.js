@@ -17,7 +17,7 @@ const createHomepageTemplate = () => /*html*/`
           hx-get="/books" 
           hx-target=".book-list" 
           hx-target=".book-list"
-          hx-trigger="dblclick"
+          hx-trigger="click"
           >Show Books</button>
           <!-- here -->
         </div>
