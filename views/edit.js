@@ -1,5 +1,9 @@
 const createEditFormTemplate  = (book) => /*html*/`
-<form>
+<form
+    hx-put="/books/${book.id}"
+    hx-target="closest li"
+    hx-swap="outerHTML"
+    >
     <input 
         type="text"
         name="title"
@@ -14,7 +18,7 @@ const createEditFormTemplate  = (book) => /*html*/`
         required
         value="${book.author}"
         />
-    <button>Add book</button>
+    <button>Confirm</button>
     </form>
 `;
 
